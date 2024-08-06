@@ -8,15 +8,21 @@ variable "billing_account" {
   default     = "012756-B33740-D127D2"
 }
 
-variable "project-cohesive" {
+variable "host_project" {
   description = "project-cohesive"
   default     = "cohesive-idiom-431300-i5"
 }
 
 variable "service_project" {
   description = "service project for VPC Shared"
-  default = "project-b-5919"
+  default = "project-b-575655"
 }
 
+variable "region" {
+  default = "us-central1"
+}
 
+variable "sa-proj-b" {
+  default = "517221087156-compute@developer.gserviceaccount.com"
+}
  
