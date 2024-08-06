@@ -1,9 +1,13 @@
 #Create a project that will serve as a Service Project
 resource "google_project" "project-b" {
-  name            = "project-b"
+  name            = "zzsa-project-b"
   project_id      = var.service_project
   org_id          = "591930884219"
   billing_account = var.billing_account
+}
+
+data "google_project" "proj_b_numbr" {
+  project_id = google_project.project-b.project_id
 }
 
 #Enable Compute Engine Service in Project B
@@ -32,6 +36,7 @@ resource "google_organization_iam_member" "yan" {
   ])
   role   = each.key
   member = "user:yan@gcp.systemasycloud.com"
+
 }
 
 #Adding proper roles to deploy VMs in Project B
@@ -50,6 +55,8 @@ resource "google_project_iam_member" "user1-project-b-iam" {
 # Create Shared VPC Host Project
 resource "google_compute_shared_vpc_host_project" "host" {
   project = var.host_project
+
+  depends_on = [ google_organization_iam_member.yan ]
 }
 
 #Create Shared VPC Service Project
@@ -82,8 +89,8 @@ resource "google_compute_subnetwork_iam_member" "subnet_iam_service_project" {
   region     = google_compute_subnetwork.subnet.region
   subnetwork = google_compute_subnetwork.subnet.name
   role       = "roles/compute.networkUser"
-  member     = "serviceAccount:service-${google_project.project-b.project_number}@compute-system.iam.gserviceaccount.com"
-  //member     = "user:yan@gcp.systemasycloud.com"
+  //member     = "serviceAccount:service-${data.google_project.proj_b_numbr.project_id}@compute-system.iam.gserviceaccount.com"
+  member     = "user:yan@gcp.systemasycloud.com"
   depends_on = [google_compute_shared_vpc_service_project.service]
 }
 

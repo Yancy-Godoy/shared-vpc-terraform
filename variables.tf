@@ -15,7 +15,7 @@ variable "host_project" {
 
 variable "service_project" {
   description = "service project for VPC Shared"
-  default = "project-b-575655"
+  default = "project-b-00xzxx"
 }
 
 variable "region" {
