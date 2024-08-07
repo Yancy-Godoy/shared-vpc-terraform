@@ -5,7 +5,7 @@ variable "organization" {
 
 variable "billing_account" {
   description = "billing account of my proj"
-  default     = "012756-B33740-D127D2"
+  default     = "billing-id"
 }
 
 variable "host_project" {
