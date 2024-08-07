@@ -2,7 +2,7 @@
 resource "google_project" "project-b" {
   name            = "zzsa-project-b"
   project_id      = var.service_project
-  org_id          = "591930884219"
+  org_id          = "org-ID"
   billing_account = var.billing_account
 }
 
@@ -25,7 +25,7 @@ resource "google_organization_iam_member" "organization" {
     "roles/resourcemanager.projectIamAdmin"
   ])
   role   = each.key
-  member = "user:user1@gcp.systemasycloud.com"
+  member = "user:user1@domain.com"
 }
 
 resource "google_organization_iam_member" "yan" {
@@ -35,7 +35,7 @@ resource "google_organization_iam_member" "yan" {
     "roles/resourcemanager.projectIamAdmin"
   ])
   role   = each.key
-  member = "user:yan@gcp.systemasycloud.com"
+  member = "user:yan@domain.com"
 
 }
 
@@ -43,13 +43,13 @@ resource "google_organization_iam_member" "yan" {
 resource "google_project_iam_member" "yan-project-b-iam" {
   project = var.service_project
   role    = "roles/compute.admin"
-  member  = "user:yan@gcp.systemasycloud.com"
+  member  = "user:yan@domain.com"
 }
 
 resource "google_project_iam_member" "user1-project-b-iam" {
   project = var.service_project
   role    = "roles/compute.admin"
-  member  = "user:user1@gcp.systemasycloud.com"
+  member  = "user:user1@domain.com"
 }
 
 # Create Shared VPC Host Project
@@ -89,8 +89,7 @@ resource "google_compute_subnetwork_iam_member" "subnet_iam_service_project" {
   region     = google_compute_subnetwork.subnet.region
   subnetwork = google_compute_subnetwork.subnet.name
   role       = "roles/compute.networkUser"
-  //member     = "serviceAccount:service-${data.google_project.proj_b_numbr.project_id}@compute-system.iam.gserviceaccount.com"
-  member     = "user:yan@gcp.systemasycloud.com"
+  member     = "user:yan@domain.com"
   depends_on = [google_compute_shared_vpc_service_project.service]
 }
 
