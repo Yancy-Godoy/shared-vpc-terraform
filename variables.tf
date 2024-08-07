@@ -1,6 +1,6 @@
 variable "organization" {
   description = "org ID"
-  default     = "591930884219"
+  default     = "org-id-var"
 }
 
 variable "billing_account" {
@@ -9,8 +9,8 @@ variable "billing_account" {
 }
 
 variable "host_project" {
-  description = "project-cohesive"
-  default     = "cohesive-idiom-431300-i5"
+  description = "project descriptoin"
+  default     = "project-id"
 }
 
 variable "service_project" {
@@ -22,7 +22,5 @@ variable "region" {
   default = "us-central1"
 }
 
-variable "sa-proj-b" {
-  default = "517221087156-compute@developer.gserviceaccount.com"
-}
+
  
