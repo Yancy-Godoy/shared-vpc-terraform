@@ -60,7 +60,7 @@ The configuration relies on several variables, which should be defined in a sepa
 3. Apply the configuration:
 
    ```bash
-   terraform plan
+   terraform apply
 
 ## Cleanup
 
